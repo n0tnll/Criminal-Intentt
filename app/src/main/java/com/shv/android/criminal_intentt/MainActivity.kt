@@ -3,6 +3,8 @@ package com.shv.android.criminal_intentt
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.shv.android.criminal_intentt.fragments.CrimeFragment
+import com.shv.android.criminal_intentt.fragments.CrimeListFragment
 import java.util.*
 
 private const val TAG = "MainActivity"

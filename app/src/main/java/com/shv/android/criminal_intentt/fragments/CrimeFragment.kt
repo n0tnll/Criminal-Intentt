@@ -1,4 +1,4 @@
-package com.shv.android.criminal_intentt
+package com.shv.android.criminal_intentt.fragments
 
 import android.os.Build
 import android.os.Bundle
@@ -15,6 +15,9 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.shv.android.criminal_intentt.Crime
+import com.shv.android.criminal_intentt.CrimeDetailViewModel
+import com.shv.android.criminal_intentt.R
 import java.util.UUID
 
 private const val ARG_CRIME_ID = "crime_id"

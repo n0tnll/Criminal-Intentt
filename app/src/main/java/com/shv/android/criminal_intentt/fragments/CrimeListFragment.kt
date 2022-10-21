@@ -1,4 +1,4 @@
-package com.shv.android.criminal_intentt
+package com.shv.android.criminal_intentt.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -12,8 +12,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.shv.android.criminal_intentt.Crime
+import com.shv.android.criminal_intentt.CrimeListViewModel
+import com.shv.android.criminal_intentt.R
 import java.util.UUID
 
 private const val TAG = "CrimeListFragment"
@@ -25,7 +30,7 @@ class CrimeListFragment : Fragment() {
 
     private var callbacks: Callbacks? = null
     private lateinit var crimeRecyclerView: RecyclerView
-    private var adapter: CrimeAdapter? = CrimeAdapter(emptyList())
+    private var adapter: CrimeListAdapter? = CrimeListAdapter(emptyList())
 
     private val crimeListViewModel: CrimeListViewModel by lazy {
         ViewModelProvider(this)[CrimeListViewModel::class.java]
@@ -66,7 +71,7 @@ class CrimeListFragment : Fragment() {
     }
 
     private fun updateUI(crimes: List<Crime>) {
-        adapter = CrimeAdapter(crimes)
+        adapter = CrimeListAdapter(crimes)
         crimeRecyclerView.adapter = adapter
     }
 
@@ -104,12 +109,11 @@ class CrimeListFragment : Fragment() {
         }
     }
 
-    private inner class CrimeAdapter(var crimes: List<Crime>) :
-        RecyclerView.Adapter<CrimeHolder>() {
+    private inner class CrimeListAdapter(var crimes: List<Crime>) :
+        ListAdapter<Crime, CrimeHolder>(CrimeComparator()) {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CrimeHolder {
             val view = layoutInflater.inflate(R.layout.list_item_crime, parent, false)
-
             return CrimeHolder(view)
         }
 
@@ -119,6 +123,17 @@ class CrimeListFragment : Fragment() {
         }
 
         override fun getItemCount(): Int = crimes.size
+    }
+
+    inner class CrimeComparator : DiffUtil.ItemCallback<Crime>() {
+        override fun areItemsTheSame(oldItem: Crime, newItem: Crime): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Crime, newItem: Crime): Boolean {
+            return oldItem == newItem
+        }
+
     }
 
     companion object {
