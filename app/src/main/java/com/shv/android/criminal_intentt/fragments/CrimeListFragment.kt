@@ -2,6 +2,7 @@ package com.shv.android.criminal_intentt.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -101,7 +102,7 @@ class CrimeListFragment : Fragment() {
         }
 
         private fun crimeDateFormat(): String =
-            android.text.format.DateFormat.format("EEEE, LLL dd, yyyy", crime.date).toString()
+            DateFormat.format("EEEE, LLL dd, yyyy, HH:mm", crime.date).toString()
 
 
         override fun onClick(view: View?) {
@@ -125,7 +126,7 @@ class CrimeListFragment : Fragment() {
         override fun getItemCount(): Int = crimes.size
     }
 
-    inner class CrimeComparator : DiffUtil.ItemCallback<Crime>() {
+    private inner class CrimeComparator : DiffUtil.ItemCallback<Crime>() {
         override fun areItemsTheSame(oldItem: Crime, newItem: Crime): Boolean {
             return oldItem == newItem
         }
