@@ -150,7 +150,7 @@ class CrimeFragment : Fragment(),
 
     private fun updateUI() {
         titleField.setText(crime.title)
-        dateButton.text = crime.date.toString()
+        dateButton.text = DateFormat.format("EEEE, LLL dd, yyyy", crime.date).toString()
         timeButton.text = DateFormat.format("HH:mm", crime.date).toString()
         solvedCheckBox.apply {
             isChecked = crime.isSolved

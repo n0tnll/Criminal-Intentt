@@ -1,10 +1,7 @@
 package com.shv.android.criminal_intentt.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.shv.android.criminal_intentt.Crime
 import java.util.UUID
 
@@ -21,4 +18,7 @@ interface CrimeDao {
 
     @Insert
     fun addCrime(crime: Crime)
+
+    @Query("DELETE FROM crime")
+    fun clearAllCrimes()
 }
