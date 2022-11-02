@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.shv.android.criminal_intentt.Crime
 import com.shv.android.criminal_intentt.CrimeListViewModel
 import com.shv.android.criminal_intentt.R
-import java.util.UUID
+import java.util.*
 
 private const val TAG = "CrimeListFragment"
 
@@ -101,6 +101,7 @@ class CrimeListFragment : Fragment(), MenuProvider {
             this.crime = crime
             titleTextView.text = crime.title
             dateTextView.text = crimeDateFormat()
+            //dateTextView.text = DateFormat.getDateFormat(context).format(crime.date).toString()
             solvedImageView.visibility =
                 if (crime.isSolved) {
                     View.VISIBLE
@@ -109,8 +110,13 @@ class CrimeListFragment : Fragment(), MenuProvider {
                 }
         }
 
-        private fun crimeDateFormat(): String =
-            DateFormat.format("EEEE, LLL dd, yyyy, HH:mm", crime.date).toString()
+        private fun crimeDateFormat(): String {
+            val date = DateFormat.getDateFormat(context).format(crime.date)
+            val time = DateFormat.getTimeFormat(context).format(crime.date)
+            return "$date $time"
+        }
+            //DateFormat.format("EEEE, LLL dd, yyyy, HH:mm", crime.date).toString()
+
 
 
         override fun onClick(view: View?) {
