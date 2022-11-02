@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.shv.android.criminal_intentt.database.CrimeDatabase
 import com.shv.android.criminal_intentt.database.migration_1_2
+import java.io.File
 import java.util.UUID
 import java.util.concurrent.Executors
 
@@ -21,6 +22,7 @@ class CrimeRepository private constructor(context: Context) {
 
     private val crimeDao = database.crimeDao()
     private val executor = Executors.newSingleThreadExecutor()
+    private val fileDir = context.applicationContext.filesDir
 
     fun getCrimes(): LiveData<List<Crime>> = crimeDao.getCrimes()
 
@@ -43,6 +45,8 @@ class CrimeRepository private constructor(context: Context) {
             crimeDao.clearAllCrimes()
         }
     }
+
+    fun getPhotoCrime(crime: Crime): File = File(fileDir, crime.photoFileName)
 
 
     companion object {

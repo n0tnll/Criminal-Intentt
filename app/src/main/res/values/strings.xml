@@ -21,4 +21,10 @@
     <string name="send_report">Send crime report via</string>
     <string name="choose_phone">choose phone</string>
     <string name="crime_number_text">Call number</string>
+    <string name="crime_photo_description">crime_photo</string>
+    <string name="camera_button_description">camera button</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="crime_photo_view_description">crime_photo_view</string>
+    <string name="crime_image_view_dialog_description">crime_image_view_dialog</string>
 </resources>
